@@ -16,13 +16,30 @@ const client = new MongoClient(uri, { serverApi: { version: ServerApiVersion.v1,
 
 async function run() {
     try {
+        const usersCollections = client.db("Judge0").collection("usersCollections")
 
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            const alreadyExist = await usersCollections.findOne(user)
+            
+
+
+            if (alreadyExist) {
+                console.log('already exist');
+                const message = `${alreadyExist.name} already access`;
+                return res.send({ acknowledge: false, message })
+            }
+            const result = await usersCollections.insertOne(user);
+            res.send(result)
+        });
+
+        
     }
     catch (error) {
         // Handle the exception
         console.error("An error occurred:", error);
     }
-
+     
 }
 run().catch((error) => console.error(error));
 
