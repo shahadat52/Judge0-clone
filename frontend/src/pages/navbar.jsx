@@ -28,6 +28,15 @@ const Navbar = () => {
 
         {
             user?.uid ? <>
+             <li>
+            <NavLink to="/#"
+                className={({ isActive }) =>
+                    isActive
+                        ? "font-bold text-lg tracking-wide text-primary transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        : " tracking-wide text-lg font-bold text-black  transition-colors duration-200 hover:text-deep-purple-accent-400"
+                }
+            >Work</NavLink>
+        </li>
                
                 <div className="dropdown dropdown-bottom dropdown-end">
                     <label tabIndex={0}  className=" avatar "><div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ">
@@ -48,8 +57,8 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className=''>
-            <div className="navbar blur-container backdrop-blur-lg flex justify-between bg-black ">
+        <div className='mb-20'>
+            <div className="navbar blur-container shadow-lg shadow-black-500  backdrop-blur-lg flex justify-between  ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -51,27 +51,27 @@ const SignUp = () => {
 
     const saveUserDataToDb = (email, name) => {
         const user = { email, name };
-        fetch("http://localhost:5000/users", {
+        fetch("https://tempo-psi.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(user)
         })
-        .then(res => res.json())
-        .then(data => {
+            .then(res => res.json())
+            .then(data => {
 
-            if (data.acknowledge === false) {
-                console.log(data);
+                if (data.acknowledge === false) {
+                    console.log(data);
+                    setSignUpEmail(email);
+                    toast.success(data.message)
+                    console.log(data.message);
+                    return;
+                }
                 setSignUpEmail(email);
-                toast.success(data.message)
-                console.log(data.message);
-                return;
-            }
-            setSignUpEmail(email);
-            toast.success('User data saved to DB')
+                toast.success('User data saved to DB')
 
-        })
+            })
     }
     return (
         <div className="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
